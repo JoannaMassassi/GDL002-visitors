@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+    <head>
+
+
+    </head>
+    <body>
+        <input type="text" id="visitor" >
+        <select name="selectCoworker" id="selectCoworker" onchange=registerVisitant()>
+            <option value="laboratoria">Laboratoria</option>
+            <option value="michelada">Michelada</option>
+            
+        </select>
+        <button id="register">Registrarse</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+   
+    <script>
+      // Initialize Firebase
+      var config = {
+        apiKey: "AIzaSyAIwewJo_-Mzz3-8Ck_xnoucXsI7Folpxk",
+        authDomain: "visitors-254eb.firebaseapp.com",
+        databaseURL: "https://visitors-254eb.firebaseio.com",
+        projectId: "visitors-254eb",
+        storageBucket: "visitors-254eb.appspot.com",
+        messagingSenderId: "937556899546"
+      };
+      firebase.initializeApp(config);
+      const db = firebase.firestore();
+    </script>
+   
+          
+        </body>
+</html>
