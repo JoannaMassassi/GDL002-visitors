@@ -1,23 +1,21 @@
 
 
-let visitorName = document.getElementById("visitor").value;
-let visitingCo = document.getElementById("selectCoworker").value;
+let visitorName = document.querySelector("#visitor");
+let visitingCo = document.querySelector("#selectCoworker");
 
 const btnRegister = document.querySelector("#register");
 
 
-   function registerVisitant () {
-    db.collection("visitors").add({
-      name: visitorName,
-      visiting: visitingCo 
-    });
-    console.log(visitorName,visitingCo);
-  }
-
-  if (btnRegister) {
-      btnRegister.addEventListener("click",registerVisitant);
-     
-      
-  }
-
+function registerVisitant () {
   
+  db.collection("visitors").add({
+    name: visitorName.value,
+    visiting: visitingCo.value
+  });
+  alert("Gracias por visitarnos");
+  document.querySelector("#visitor").value = "";
+  document.querySelector("#selectCoworker").value = "";
+}
+  if (btnRegister) {
+    btnRegister.addEventListener("click", registerVisitant);
+  }
