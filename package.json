@@ -1,0 +1,28 @@
+{
+  "name": "gdl002-visitors",
+  "version": "1.0.0",
+  "description": "## Preámbulo",
+  "main": "index.js",
+  "dependencies": {
+    "eslint": "^5.16.0"
+  },
+  "devDependencies": {
+    "jest": "^24.7.1"
+  },
+  "scripts": {
+    "htmlhint": "htmlhint src/*.html test/*.html",
+    "eslint": "eslint --ext .js src/ test/",
+    "pretest": "npm run eslint && npm run htmlhint",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreaDiazH/GDL002-visitors.git"
+  },
+  "author": "Joanna M. y Andrea D.",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreaDiazH/GDL002-visitors/issues"
+  },
+  "homepage": "https://github.com/AndreaDiazH/GDL002-visitors#readme"
+}
