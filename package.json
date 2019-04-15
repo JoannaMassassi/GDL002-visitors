@@ -7,6 +7,7 @@
     "eslint": "^5.16.0"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
     "jest": "^24.7.1"
   },
   "scripts": {
@@ -25,5 +26,4 @@
     "url": "https://github.com/AndreaDiazH/GDL002-visitors/issues"
   },
   "homepage": "https://github.com/AndreaDiazH/GDL002-visitors#readme"
-
 }

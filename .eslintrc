@@ -1,16 +1,19 @@
 {
   "env": {
-    "browser": true
-  },
-  "parserOptions": {
-    "ecmaVersion": 6
-  },
-  "extends": "eslint:recommended",
-  "globals": {
-    "cipher": false
-  },
+    "browser": true,
+    "node": true,
+    "jest":true,
+    "mocha":true
+   },
   "rules": {
     "no-console": 0,
     "semi": 2,
-  }
+  },
+  "globals":{
+   "firebase": true,
+   "db": true
+  },
+  "parser": {
+   "babel-eslint"
+   }
 }
