@@ -6,24 +6,100 @@ const btnRegister = document.querySelector("#register");
 
 
 function registerVisitant () {
-  if (visitorName.value.length < 5) {
-    alert ("Ingresa un nombre válido");
-  }
-  if (visitingCo.value ===""){
-    alert("Selecciona a quien visitas");
+  if (visitorName.value.length < 5 || visitingCo.value === "" ) {
+    alert ("Datos incorrectos" );
+  
   } else {
-  db.collection("visitors").add({
-    name: visitorName.value,
-    visiting: visitingCo.value,
-    hour: firebase.firestore.FieldValue.serverTimestamp(),
-    photo: null //y aquí la de la fotografía
-  });
-  alert("Gracias por visitarnos");
-  visitorName.value = "";
-  visitingCo.value = "";
+    db.collection("visitors").add({
+      name: visitorName.value,
+      visiting: visitingCo.value,
+      hour: firebase.firestore.FieldValue.serverTimestamp(),
+      photo: null //y aquí la de la fotografía
+    });
+    alert("Gracias por visitarnos");
+    visitorName.value = "";
+    visitingCo.value = "";
   };
 }
 
 if (btnRegister) {
   btnRegister.addEventListener("click", registerVisitant);
 }
+
+//probando lo de la cámara
+/*const captureVideoButton = document.querySelector('#screenshot .capture-button');
+const screenshotButton = document.querySelector('#screenshot-button');
+const img = document.querySelector('#screenshot img');
+const video = document.querySelector('#screenshot video');
+
+
+function hasGetUserMedia() {
+  return !!(navigator.mediaDevices &&
+  navigator.mediaDevices.getUserMedia);
+}
+
+if (hasGetUserMedia()) {
+  // Good to go!
+} else {
+  alert('getUserMedia() is not supported by your browser');
+}
+
+const constraints = {
+  video: true
+};
+
+const videoCamera = document.querySelector('video');
+
+navigator.mediaDevices.getUserMedia(constraints).
+then((stream) => {video.srcObject = stream});
+
+
+
+const canvas = document.getElementById('canvas');
+
+captureVideoButton.onclick = function() {
+  navigator.mediaDevices.getUserMedia(constraints).
+  then(handleSuccess).catch(handleError);
+};
+
+screenshotButton.onclick = video.onclick = function() {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+  canvas.getContext('2d').drawImage(video, 0, 0);
+  // Other browsers will fall back to image/png
+  img.src = canvas.toDataURL('image/webp');
+};
+
+function handleSuccess(stream) {
+  screenshotButton.disabled = false;
+  video.srcObject = stream;
+}
+
+
+/*window.addEventListener("load",init);
+function init(){
+  let video = document.querySelector("#v");
+  let canvas = document.querySelector("#c");
+  let btn = document.querySelector("#t");
+  let img = document.querySelector("#img");
+  
+  navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || navigator.mozGetUserMedia || navigator.msGetUserMedia);
+  if(navigator.getUserMedia){
+    navigator.getUserMedia({video:true},function(stream){
+      video.src= window.URL.createObjectURL(stream);
+      video.play();
+    },function(e){console.log(e);})
+  }
+  else alert("error de navegador");
+    video.addEventListener("loadedmetadata", 
+    function(){
+      canvas.width = video.videoWidth; 
+      canvas.height = video.Height;
+    },false);
+  
+  btn.addEventListener('click', function(){
+    canvas.getContext("2d").drawImage(video,0,0);
+    let imgData = canvas.toDataURL("image/png");
+    img.setAttribute("src",imgData);
+  });
+ */
