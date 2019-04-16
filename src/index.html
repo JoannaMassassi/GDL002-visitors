@@ -27,17 +27,21 @@
     <br>
     <div class="video-wrap">
       <video id="video" playsinline autoplay></video>
-  </div>
-  
-  <!-- Trigger canvas web API -->
-  <div class="controller">
-      <button id="snap">Captura la foto</button>
-  </div>
+    </div>
+    <!-- Trigger canvas web API -->
+    <div class="controller">
+      <button id="snap" class="btn btn-secondary registBtn">Captura la foto</button>
+    </div>
+    <br>
       <button id="register" class="btn btn-secondary registBtn">Registrarse</button>
   </section>
-  <section class="visitorPhoto">
-  <!--Aqui, se construiria la vista de la camara para tomar la foto-->
-  </section>
+
+<!--  <section class="visitorPhoto">
+    <video autoplay></video>
+    <img src="">
+    <canvas id="canvas"></canvas>
+    <button id="screenshot-button" class="btn btn-secondary capture-button">Toma la foto</button>
+  </section> -->
 
     <script src="firebase.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
