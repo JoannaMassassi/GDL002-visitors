@@ -6,11 +6,8 @@ const btnRegister = document.querySelector("#register");
 
 
 function registerVisitant () {
-  if (visitorName.value.length < 5) {
-    alert ("Ingresa un nombre válido");
-  }
-  if (visitingCo.value ===""){
-    alert("Selecciona a quien visitas");
+  if (visitorName.value.length < 5 || visitingCo.value === "") {
+    alert ("Datos incorrectos");
   } else {
   db.collection("visitors").add({
     name: visitorName.value,
@@ -22,6 +19,7 @@ function registerVisitant () {
   visitorName.value = "";
   visitingCo.value = "";
   };
+
 }
 
 if (btnRegister) {
