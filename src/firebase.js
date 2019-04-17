@@ -26,6 +26,8 @@ if (btnRegister) {
   btnRegister.addEventListener("click", registerVisitant);
 }
 
+
+
 const video = document.getElementById('video');
 const canvas = document.getElementById('canvas');
 const snap = document.getElementById("snap");
@@ -58,15 +60,14 @@ init();
 
 let tableData = document.getElementById('table-data');
 
+
 function guestList() {
   db.collection("visitors").onSnapshot(querySnapshot => {
     tableData.innerHTML = '';
     querySnapshot.forEach(doc => {
-      // console.log(`${doc.id} => ${doc.data().post} primero`);
-      // console.log(`${doc.id} => ${doc.data().nombre}`);
       tableData.innerHTML += `
-      <div class="card mb-3 border-secondary mb-3 col-md-3">
-      <h5 class="card-header border-primary">${doc.id}</h5>
+      <div class="card col-md-3">
+      <h5 class="card-header">${doc.id}</h5>
       <div class="card-body">
       <p class="card-text">${doc.data().name}</p>
       <p class="card-text">${doc.data().visiting}</p>
