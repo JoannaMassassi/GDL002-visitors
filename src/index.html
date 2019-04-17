@@ -10,9 +10,7 @@
   <body>
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand">Colombe</a>
-    <form class="form-inline">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Admin</button>
-    </form>
+      <button class="btn btn-outline-success my-2 my-sm-0" onclick= "guestList()">Admin</button>
   </nav>
   <section class= "welcomePage">
     <h1>¡Hola!<br>Por favor, registra tu visita</h1>
@@ -34,6 +32,14 @@
     </div>
     <br>
       <button id="register" class="btn btn-secondary registBtn">Registrarse</button>
+  </section>
+  <section>
+  <!-- aquí va la pantalla de ingreso de la admin -->
+  </section>
+  <section class= "currentGuest">
+  <!--Aquí la pantalla de visitas activas -->
+    <div id= "table-data" class= "row">
+    </div>
   </section>
 
 <!--  <section class="visitorPhoto">
