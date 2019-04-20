@@ -1,4 +1,9 @@
-function sum(a, b) {
-       return a + b;
+let colombeData = function validateInputs (name,host) {
+       if (name.value == "null") {
+              return false           
+       } if (host.value == "") {
+              return false
+       };
 }
-module.exports = sum; 
+
+

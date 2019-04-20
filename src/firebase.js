@@ -1,29 +1,37 @@
+
+
 let visitorName = document.querySelector("#visitor");
 let visitingCo = document.querySelector("#selectCoworker");
-
 const btnRegister = document.querySelector("#register");
+btnRegister.addEventListener('click', submitData);
+
+function submitData (){
+  validateInputs ();
+};
 
 
+// Esta funcion crea el documento con los datos del visitante en Firebase
 
-function registerVisitant () {
-  if (visitorName.value.length < 5 || visitingCo.value === "" ) {
-    alert ("Datos incorrectos" );
-  
-  } else {
+function createCollection () {
     db.collection("visitors").add({
-      name: visitorName.value,
-      visiting: visitingCo.value,
-      hour: firebase.firestore.FieldValue.serverTimestamp(),
-      photo: null //y aquí la de la fotografía
+        name: visitorName.value,
+        visiting: visitingCo.value,
+        hour: firebase.firestore.FieldValue.serverTimestamp(), //new Date
+        photo: null //Fotografía pendiente en base 64
     });
-    alert("Gracias por visitarnos");
-    visitorName.value = "";
-    visitingCo.value = "";
-  };
+      alert("Gracias por tú visita");
+      visitorName.value = "";
+      visitingCo.value = "";
 }
+  
+// Función que valida que los campos no estén vacíos 
+function validateInputs () {
+if (visitorName.value.length < 5 || visitingCo.value === "" ) {
+ alert ("Tu información no está completa");
 
-if (btnRegister) {
-  btnRegister.addEventListener("click", registerVisitant);
+} else {
+  createCollection();
+  };
 }
 
 
@@ -34,6 +42,7 @@ const snap = document.getElementById("snap");
 const errorMsgElement = document.querySelector('span#errorMsg');
 
 const constraints = {
+
   audio: false,
   video: {
     width: 300, height: 300
