@@ -10,9 +10,9 @@
   <body>
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand">Colombe</a>
-      <button class="btn btn-outline-success my-2 my-sm-0" onclick= "guestList()">Admin</button>
+      <a href= "#currentGuest" class="btn btn-outline-success my-2 my-sm-0 nav-link" onclick= "guestList()" data-target= "currentGuest">Admin</a>
   </nav>
-  <section class= "welcomePage">
+  <section class= "active page" id= "welcomePage">
     <h1>¡Hola!<br>Por favor, registra tu visita</h1>
     <br>
     <p>Escribe tu nombre y Apellido</p>     
@@ -34,11 +34,18 @@
     <br>
       <button id="register" class="btn btn-secondary registBtn">Registrate</button>
   </section>
-  <section>
-  <!-- aquí va la pantalla de ingreso de la admin -->
+ <!-- <section class= "active page" id= "adminLogin">
+    <input type="text" id="" placeholder= "Ingresa el código">
+    <br>
+    <button class= "btn btn-outline-success my-2 my-sm-0 nav-link">Ingresar</button>
   </section>
-  <section class= "currentGuest">
   <!--Aquí la pantalla de visitas activas -->
+  <section class= "active page" id= "currentGuest">
+    <div>
+      <input type= "text" id= "coWorker" placeholder= "Ingresa nuevo coWorker">
+      <input type= "text" id= "mailTo" placeholder= "Correo Electronico">
+      <button class= "btn btn-outline-success my-2 my-sm-0 nav-link btnSave" id="save">Registrar</button>
+    </div>
     <div id= "table-data" class= "row">
     </div>
   </section>
@@ -51,6 +58,7 @@
   </section> -->
 
     <script src="firebase.js"></script>
+    <script src="navhash.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
    
     <script>

@@ -4,11 +4,14 @@ let visitorName = document.querySelector("#visitor");
 let visitingCo = document.querySelector("#selectCoworker");
 const btnRegister = document.querySelector("#register");
 btnRegister.addEventListener('click', submitData);
+let coWorkerName = document.querySelector("#coWorker");
+let coWorkerMail = document.querySelector("#mailTo");
+const btnSave = document.querySelector("#save");
+btnSave.addEventListener('click', submit);
 
 function submitData (){
   validateInputs ();
 };
-
 
 // Esta funcion crea el documento con los datos del visitante en Firebase
 
@@ -23,14 +26,35 @@ function createCollection () {
       visitorName.value = "";
       visitingCo.value = "";
 }
-  
-// Función que valida que los campos no estén vacíos 
-function validateInputs () {
-if (visitorName.value.length < 5 || visitingCo.value === "" ) {
- alert ("Tu información no está completa");
 
-} else {
-  createCollection();
+function validateInputs () {
+  if (visitorName.value.length < 5 || visitingCo.value === "" ) {
+    alert ("Tu información no está completa");
+    
+  } else {
+    createCollection();
+  };
+}
+
+function submit (){
+  validateInfo();
+};
+
+function coWorkerList() {
+  db.collection("coworkers").add({
+    email: coWorkerMail.value,
+    name: coWorkerName.value
+  });
+  coWorkerName.value= "";
+  coWorkerMail.vale= "";
+}
+
+function validateInfo () {
+  if (coWorkerMail.value === "" || coWorkerName.value === "" ) {
+    alert ("Llena los campos antes de registrar");
+    
+  } else {
+    coWorkerList();
   };
 }
 
@@ -87,3 +111,19 @@ function guestList() {
     });
   });
 }
+
+/*let selectCoworker = document.getElementById('selectCoworker');
+
+function dinamicSelector () {
+  db.collection("coworkers").onSnapshot(querySnapshot =>{
+    selectCoworker.innerHTML = '';
+    querySnapshot.forEach(doc => {
+      selectCoworker.innerHTML +=`
+      <select name="selectCoworker" id="selectCoworker" class="visitantSelector">
+      <option value="">A quien visitas</option>
+      <option value="${doc.data().email}">${doc.data().name}</option>
+      </select>
+       `;
+    });
+  });
+} */
