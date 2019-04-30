@@ -47,7 +47,7 @@ const constraints = {
     };
     
     // Access webcam
-    async function init() {
+    async function accesWebcam() {
         try {
             const stream = await navigator.mediaDevices.getUserMedia(constraints);
             handleSuccess(stream);
@@ -56,11 +56,32 @@ const constraints = {
             }
           }
           
-          // Success
-          function handleSuccess(stream) {
+          
+         async function handleSuccess(stream) {
+            try {
+              const selecT = await document.getElementById("selectCoworker").addEventListener("onchange", stream);
+              selecT;
               window.stream = stream;
               video.srcObject = stream;
+             } catch (e) {
+              errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
+             }
             }
             
-            // Load init
-            init();
+            
+            width = 320;
+            height = 10;
+
+            function takepicture() {
+              var contentVideo = document.querySelector(".video-wrap");   
+              contentVideo.width = width;
+              contentVideo.height = height;
+              contentVideo.getContext('2d').drawImage(video, 0, 0, width, height);
+              var data = contentVideo.toDataURL('image/png');
+              photo.setAttribute('src', data);
+            }
+          
+            snap.addEventListener("click",takepicture);
+
+            // Load Acces
+            accesWebcam();

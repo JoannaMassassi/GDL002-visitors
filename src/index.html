@@ -19,7 +19,7 @@
     <br>
       <input type="text" id="visitor" class="visitorInput" placeholder="Tu nombre y Apellido">
     <br>
-      <select name="selectCoworker" id="selectCoworker" class="visitantSelector">
+      <select name="selectCoworker" id="selectCoworker" class="visitantSelector" onchange="handleSuccess">
         <option value="">A quien visitas</option>
         <option value="laboratoria">Laboratoria</option>
         <option value="michelada">Michelada</option>
@@ -44,7 +44,10 @@
   </section> -->
 
     <script src="firebase.js"></script>
+    <script src="routes.js"></script>
+
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
+    <script src="visitorTemplate.js"></script>
    
     <script>
       // Initialize Firebase
