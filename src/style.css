@@ -12,7 +12,7 @@ a:not([href]):not([tabindex]) {
   text-decoration: none;
 }
 
-.welcomePage{
+#welcomePage{
   text-align:center;
 }
 
@@ -34,5 +34,20 @@ a:not([href]):not([tabindex]) {
   color: #fff;
   background-color: #330b62;
   border-color: #1d053a;
+}
+
+
+
+.page{
+  display: none;
+  width: 100%;
+  height: auto;
+  /*min-height: 100%;  allow for content off the bottom of the page */
+ /* position: absolute;*/
+  padding: 1rem 2rem;
+}
+
+.active {
+  display: block; 
 }
 
