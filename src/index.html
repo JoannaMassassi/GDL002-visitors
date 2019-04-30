@@ -10,7 +10,7 @@
   <body onload= "dinamicSelector()">
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand">Colombe</a>
-      <a href= "#currentGuest" class="btn btn-outline-success my-2 my-sm-0 nav-link" onclick= "guestList()" data-target= "currentGuest">Admin</a>
+      <a href= "#adminLogin" class="btn btn-outline-success my-2 my-sm-0 nav-link" onclick= "guestList()" data-target= "adminLogin">Admin</a>
   </nav>
   <section class= "active page" id= "welcomePage">
     <h1>¡Hola!<br>Por favor, registra tu visita</h1>
@@ -31,13 +31,13 @@
     <br>
       <button id="register" class="btn btn-secondary registBtn">Registrate</button>
   </section>
- <!-- <section class= "active page" id= "adminLogin">
-    <input type="text" id="" placeholder= "Ingresa el código">
+  <section class= "page" id= "adminLogin">
+    <input type="text" id="password" placeholder= "Ingresa el código">
     <br>
-    <button class= "btn btn-outline-success my-2 my-sm-0 nav-link">Ingresar</button>
+    <div class= "btn btn-outline-success my-2 my-sm-0" onclick= "logAdmin()" data-target= "currentGuest">Ingresar</div>
   </section>
   <!--Aquí la pantalla de visitas activas -->
-  <section class= "active page" id= "currentGuest">
+  <section class= "page" id= "currentGuest">
     <div>
       <input type= "text" id= "coWorker" placeholder= "Ingresa nuevo coWorker">
       <input type= "text" id= "mailTo" placeholder= "Correo Electronico">

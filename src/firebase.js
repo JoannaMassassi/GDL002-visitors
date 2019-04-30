@@ -30,7 +30,7 @@ function createCollection () {
 function validateInputs () {
   if (visitorName.value.length < 5 || visitingCo.value === "" ) {
     alert ("Tu información no está completa");
-    
+  
   } else {
     createCollection();
   };
@@ -98,14 +98,16 @@ function guestList() {
   db.collection("visitors").onSnapshot(querySnapshot => {
     tableData.innerHTML = '';
     querySnapshot.forEach(doc => {
+      let formatHour = new Date (doc.data().hour.seconds*1000);
       tableData.innerHTML += `
       <div class="card col-md-3">
       <h5 class="card-header">${doc.id}</h5>
       <div class="card-body">
       <p class="card-text">${doc.data().name}</p>
       <p class="card-text">${doc.data().visiting}</p>
-      <p class="card-text">${doc.data().hour}</p>
-      <p class="card-text"> Aquí va la fotografía </p>
+      <p class="card-text">${formatHour}</p>
+      <!-- <p class="card-text"> Aquí va la fotografía </p>
+      <img src= "aqui va el base 64"> -->
       </div>
       </div>   `;
     });

@@ -36,3 +36,14 @@ const app = {
   },
 };
 document.addEventListener('DOMContentLoaded', app.init);
+
+
+
+function logAdmin() {
+  let logPassword = document.getElementById('password').value;
+  if (logPassword === "prueba") {
+    location.href = "#currentGuest";
+  } else {
+    alert("La clave que ingresaste no es correcta");
+  };
+}
