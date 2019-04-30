@@ -36,14 +36,12 @@ a:not([href]):not([tabindex]) {
   border-color: #1d053a;
 }
 
-
-
 .page{
   display: none;
   width: 100%;
   height: auto;
   /*min-height: 100%;  allow for content off the bottom of the page */
- /* position: absolute;*/
+  position: absolute;
   padding: 1rem 2rem;
 }
 
@@ -51,3 +49,11 @@ a:not([href]):not([tabindex]) {
   display: block; 
 }
 
+.fields{
+  text-align: center;
+  padding: 3.5rem;
+}
+
+#password{
+  margin: 3rem;
+}

@@ -1,4 +1,4 @@
-
+//this are my variables and EventListeners needed
 
 //this are my variables and EventListeners needed
 
@@ -24,7 +24,12 @@ function createCollection () {
         hour: firebase.firestore.FieldValue.serverTimestamp(), //new Date
         photo: null //Fotografía pendiente en base 64
     });
-      alert("Gracias por tú visita");
+    Swal.fire(
+      'Gracias por tu visita!',
+      'vuelve pronto',
+      'success'
+    );
+      //alert("Gracias por tú visita");
       visitorName.value = "";
       visitingCo.value = "";
 }
@@ -32,7 +37,13 @@ function createCollection () {
 //this function validate the inputs from the guest and if there is an error send an alert.
 function validateInputs () {
   if (visitorName.value.length < 5 || visitingCo.value === "" ) {
-    alert ("Tu información no está completa");
+    Swal.fire({
+      title: 'Tus datos no estan completos',
+      //text: 'Do you want to continue',
+      type: 'error',
+      confirmButtonText: 'Ok'
+    })
+   // alert ("Tu información no está completa");
   
   } else {
     createCollection();
@@ -57,7 +68,12 @@ function coWorkerList() {
 //this function validate the inputs from the admin and if there is an error, send an alert.
 function validateInfo () {
   if (coWorkerMail.value === "" || coWorkerName.value === "" ) {
-    alert ("Llena los campos antes de registrar");
+    Swal.fire({
+      title: 'Llena los campos antes de registrar',
+      type: 'error',
+      confirmButtonText: 'Ok'
+    })
+   // alert ("Llena los campos antes de registrar");
     
   } else {
     coWorkerList();
@@ -101,7 +117,7 @@ let tableData = document.getElementById('table-data');
 
 //this function create cards with the info of visitors collection and show it to the admin.
 function guestList() {
-  db.collection("visitors").onSnapshot(querySnapshot => {
+  db.collection("visitors").onSnapshot(querySnapshot => { //.orderBy("date","desc")
     tableData.innerHTML = '';
     querySnapshot.forEach(doc => {
       let formatHour = new Date (doc.data().hour.seconds*1000);

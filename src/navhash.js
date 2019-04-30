@@ -38,12 +38,16 @@ const app = {
 document.addEventListener('DOMContentLoaded', app.init);
 
 
-
 function logAdmin() {
   let logPassword = document.getElementById('password').value;
-  if (logPassword === "prueba") {
+  if (logPassword === "secreto") {
     location.href = "#currentGuest";
   } else {
-    alert("La clave que ingresaste no es correcta");
+    Swal.fire({
+      title: 'La clave que ingresaste no es correcta',
+      type: 'error',
+      confirmButtonText: 'Ok'
+    })
+    //alert("La clave que ingresaste no es correcta");
   };
 }
