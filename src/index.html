@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style.css">
   </head>
-  <body>
+  <body onload= "dinamicSelector()">
   <nav class="navbar navbar-light bg-light">
     <a class="navbar-brand">Colombe</a>
       <a href= "#currentGuest" class="btn btn-outline-success my-2 my-sm-0 nav-link" onclick= "guestList()" data-target= "currentGuest">Admin</a>
@@ -19,9 +19,6 @@
       <input type="text" id="visitor" class="visitorInput" >
     <br>
       <select name="selectCoworker" id="selectCoworker" class="visitantSelector">
-        <option value="">A quien visitas</option>
-        <option value="laboratoria">Laboratoria</option>
-        <option value="michelada">Michelada</option>
       </select>
     <br>
     <div class="video-wrap">

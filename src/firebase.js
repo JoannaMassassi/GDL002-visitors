@@ -69,7 +69,7 @@ const constraints = {
 
   audio: false,
   video: {
-    width: 300, height: 300
+    width: 200, height: 200
   }
 };
 // Access webcam
@@ -112,18 +112,14 @@ function guestList() {
   });
 }
 
-/*let selectCoworker = document.getElementById('selectCoworker');
+let selectCoworker = document.getElementById('selectCoworker');
 
 function dinamicSelector () {
   db.collection("coworkers").onSnapshot(querySnapshot =>{
-    selectCoworker.innerHTML = '';
+    selectCoworker.innerHTML = '<option value="">A quien visitas</option>';
     querySnapshot.forEach(doc => {
       selectCoworker.innerHTML +=`
-      <select name="selectCoworker" id="selectCoworker" class="visitantSelector">
-      <option value="">A quien visitas</option>
-      <option value="${doc.data().email}">${doc.data().name}</option>
-      </select>
-       `;
+      <option value="${doc.data().email}">${doc.data().name}</option>`;
     });
   });
-} */
+}
