@@ -1,5 +1,7 @@
 
 
+//this are my variables and EventListeners needed
+
 let visitorName = document.querySelector("#visitor");
 let visitingCo = document.querySelector("#selectCoworker");
 const btnRegister = document.querySelector("#register");
@@ -9,12 +11,12 @@ let coWorkerMail = document.querySelector("#mailTo");
 const btnSave = document.querySelector("#save");
 btnSave.addEventListener('click', submit);
 
+//this function validates the inputs from the guest
 function submitData (){
   validateInputs ();
 };
 
-// Esta funcion crea el documento con los datos del visitante en Firebase
-
+//this function creates the collection for visitors on firebase
 function createCollection () {
     db.collection("visitors").add({
         name: visitorName.value,
@@ -27,6 +29,7 @@ function createCollection () {
       visitingCo.value = "";
 }
 
+//this function validate the inputs from the guest and if there is an error send an alert.
 function validateInputs () {
   if (visitorName.value.length < 5 || visitingCo.value === "" ) {
     alert ("Tu información no está completa");
@@ -36,10 +39,12 @@ function validateInputs () {
   };
 }
 
+//this function validates the inputs from the admin
 function submit (){
   validateInfo();
 };
 
+//this function creates the collection for coworkers on firebase
 function coWorkerList() {
   db.collection("coworkers").add({
     email: coWorkerMail.value,
@@ -49,6 +54,7 @@ function coWorkerList() {
   coWorkerMail.vale= "";
 }
 
+//this function validate the inputs from the admin and if there is an error, send an alert.
 function validateInfo () {
   if (coWorkerMail.value === "" || coWorkerName.value === "" ) {
     alert ("Llena los campos antes de registrar");
@@ -89,11 +95,11 @@ function handleSuccess(stream) {
 // Load init
 init();
 
-//probando la tabla de ingresos
+
 
 let tableData = document.getElementById('table-data');
 
-
+//this function create cards with the info of visitors collection and show it to the admin.
 function guestList() {
   db.collection("visitors").onSnapshot(querySnapshot => {
     tableData.innerHTML = '';
@@ -101,7 +107,7 @@ function guestList() {
       let formatHour = new Date (doc.data().hour.seconds*1000);
       tableData.innerHTML += `
       <div class="card col-md-3">
-      <h5 class="card-header">${doc.id}</h5>
+      <h5 class="card-header"></h5>
       <div class="card-body">
       <p class="card-text">${doc.data().name}</p>
       <p class="card-text">${doc.data().visiting}</p>
@@ -116,6 +122,7 @@ function guestList() {
 
 let selectCoworker = document.getElementById('selectCoworker');
 
+//this function create fields on the select with the name of the coworker
 function dinamicSelector () {
   db.collection("coworkers").onSnapshot(querySnapshot =>{
     selectCoworker.innerHTML = '<option value="">A quien visitas</option>';
