@@ -25,9 +25,10 @@ function createCollection () {
         photo: null //Fotografía pendiente en base 64
     });
     Swal.fire(
-      'Gracias por tu visita!',
+      'Gracias por tu visita ' + visitorName.value,
       'vuelve pronto',
-      'success'
+      'success',
+     // confirmButtonColor: '#330b62'
     );
       //alert("Gracias por tú visita");
       visitorName.value = "";
@@ -41,7 +42,8 @@ function validateInputs () {
       title: 'Tus datos no estan completos',
       //text: 'Do you want to continue',
       type: 'error',
-      confirmButtonText: 'Ok'
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
     })
    // alert ("Tu información no está completa");
   
@@ -61,8 +63,15 @@ function coWorkerList() {
     email: coWorkerMail.value,
     name: coWorkerName.value
   });
+  Swal.fire(
+    'CoWorker registrado',
+    'Gracias!',
+    'success',
+    //confirmButtonColor: '#330b62'
+    );
+  coWorkerMail.value= "";
   coWorkerName.value= "";
-  coWorkerMail.vale= "";
+  
 }
 
 //this function validate the inputs from the admin and if there is an error, send an alert.
@@ -71,7 +80,8 @@ function validateInfo () {
     Swal.fire({
       title: 'Llena los campos antes de registrar',
       type: 'error',
-      confirmButtonText: 'Ok'
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
     })
    // alert ("Llena los campos antes de registrar");
     
@@ -80,71 +90,3 @@ function validateInfo () {
   };
 }
 
-
-
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const snap = document.getElementById("snap");
-const errorMsgElement = document.querySelector('span#errorMsg');
-
-const constraints = {
-
-  audio: false,
-  video: {
-    width: 200, height: 200
-  }
-};
-// Access webcam
-async function init() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(stream);
-  } catch (e) {
-      errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-    }
-  }
-// Success
-function handleSuccess(stream) {
-    window.stream = stream;
-    video.srcObject = stream;
-  }
-// Load init
-init();
-
-
-
-let tableData = document.getElementById('table-data');
-
-//this function create cards with the info of visitors collection and show it to the admin.
-function guestList() {
-  db.collection("visitors").onSnapshot(querySnapshot => { //.orderBy("date","desc")
-    tableData.innerHTML = '';
-    querySnapshot.forEach(doc => {
-      let formatHour = new Date (doc.data().hour.seconds*1000);
-      tableData.innerHTML += `
-      <div class="card col-md-3">
-      <h5 class="card-header"></h5>
-      <div class="card-body">
-      <p class="card-text">${doc.data().name}</p>
-      <p class="card-text">${doc.data().visiting}</p>
-      <p class="card-text">${formatHour}</p>
-      <!-- <p class="card-text"> Aquí va la fotografía </p>
-      <img src= "aqui va el base 64"> -->
-      </div>
-      </div>   `;
-    });
-  });
-}
-
-let selectCoworker = document.getElementById('selectCoworker');
-
-//this function create fields on the select with the name of the coworker
-function dinamicSelector () {
-  db.collection("coworkers").onSnapshot(querySnapshot =>{
-    selectCoworker.innerHTML = '<option value="">A quien visitas</option>';
-    querySnapshot.forEach(doc => {
-      selectCoworker.innerHTML +=`
-      <option value="${doc.data().email}">${doc.data().name}</option>`;
-    });
-  });
-}

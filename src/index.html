@@ -9,7 +9,7 @@
   </head>
   <body onload= "dinamicSelector()">
   <nav class="navbar navbar-light bg-light">
-    <a class="navbar-brand">Colombe</a>
+   <img width="80rem" src="../img/iconColombe.png">
       <a href= "#adminLogin" class="btn btn-outline-success my-2 my-sm-0 nav-link" onclick= "guestList()" data-target= "adminLogin">Admin</a>
   </nav>
   <section class= "active page" id= "welcomePage">
@@ -43,7 +43,7 @@
     <div class= "fields">
       <input type= "text" id= "coWorker" placeholder= "Ingresa nuevo coWorker">
       <input type= "text" id= "mailTo" placeholder= "Correo Electronico">
-      <button class= "btn btn-outline-success my-2 my-sm-0 nav-link btnSave" id="save">Registrar</button>
+      <button class= "btn btn-outline-success my-2 my-sm-0 btnSave" id="save">Registrar</button>
     </div>
     <div id= "table-data" class= "row">
     </div>
@@ -58,6 +58,7 @@
 
     <script src="firebase.js"></script>
     <script src="navhash.js"></script>
+    <script src="eventsDOM.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.9.3/firebase.js"></script>
    
     <script>

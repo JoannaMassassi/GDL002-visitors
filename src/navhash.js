@@ -46,8 +46,9 @@ function logAdmin() {
     Swal.fire({
       title: 'La clave que ingresaste no es correcta',
       type: 'error',
-      confirmButtonText: 'Ok'
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
     })
-    //alert("La clave que ingresaste no es correcta");
+    logPassword.value= "";
   };
 }
