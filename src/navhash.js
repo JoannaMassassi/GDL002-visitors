@@ -38,12 +38,21 @@ const app = {
 document.addEventListener('DOMContentLoaded', app.init);
 
 
-
 function logAdmin() {
-  let logPassword = document.getElementById('password').value;
-  if (logPassword === "prueba") {
+  let logPassword = document.getElementById('password');
+  if (logPassword.value === "secreto") {
     location.href = "#currentGuest";
   } else {
-    alert("La clave que ingresaste no es correcta");
-  };
+    Swal.fire({
+      title: 'La clave que ingresaste no es correcta',
+      type: 'error',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
+    })
+  }
+  logPassword.value= "";
+}
+
+function seeCharts() {
+  location.href = "#graphics";
 }

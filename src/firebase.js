@@ -1,5 +1,3 @@
-
-
 //this are my variables and EventListeners needed
 
 let visitorName = document.querySelector("#visitor");
@@ -22,17 +20,55 @@ function createCollection () {
         name: visitorName.value,
         visiting: visitingCo.value,
         hour: firebase.firestore.FieldValue.serverTimestamp(), //new Date
-        photo: null //Fotografía pendiente en base 64
+        photo: visitorPicture
     });
-      alert("Gracias por tú visita");
+    envia(visitingCo.value, "Tienes un visitante!", "Buen día!" + visitorName.value + "  te espera en recepción");
+    Swal.fire(
+      'Gracias por tu visita ' + visitorName.value,
+      'vuelve pronto',
+      'success',
+     // confirmButtonColor: '#330b62'
+    );
+      //alert("Gracias por tú visita");
       visitorName.value = "";
       visitingCo.value = "";
+}
+
+function envia(destino, asunto, mensaje) {
+  let peticion = 'destino=' + destino + '&asunto=' + asunto + '&mensaje='+mensaje + '&miston=eNorSVVIzM3XUcjNTCxVBAAfCwRQ';
+  let ajax = new XMLHttpRequest();
+  ajax.onreadystatechange = function() {
+    if (ajax.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+      if (ajax.status == 200) {
+        let r = JSON.parse(ajax.responseText);
+        if (r.error == "0") {
+          console.log("Envio exitoso");
+        } else {
+          alert("Error: " + r.errmsg);
+        }
+      } else if (ajax.status == 400) {
+        alert('There was an error 400');
+      } else {
+        alert('Algo salio mal');
+      }
+    }
+  };
+  ajax.open("POST", "https://lab.fotoentrega.net/colombomail/mailer.php", true);
+  ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  ajax.send(encodeURI(peticion));
 }
 
 //this function validate the inputs from the guest and if there is an error send an alert.
 function validateInputs () {
   if (visitorName.value.length < 5 || visitingCo.value === "" ) {
-    alert ("Tu información no está completa");
+    Swal.fire({
+      title: 'Tus datos no estan completos',
+      //text: 'Do you want to continue',
+      type: 'error',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
+    })
+   // alert ("Tu información no está completa");
   
   } else {
     createCollection();
@@ -50,85 +86,30 @@ function coWorkerList() {
     email: coWorkerMail.value,
     name: coWorkerName.value
   });
+  Swal.fire(
+    'CoWorker registrado',
+    'Gracias!',
+    'success',
+    //confirmButtonColor: '#330b62'
+    );
+  coWorkerMail.value= "";
   coWorkerName.value= "";
-  coWorkerMail.vale= "";
+  
 }
 
 //this function validate the inputs from the admin and if there is an error, send an alert.
 function validateInfo () {
   if (coWorkerMail.value === "" || coWorkerName.value === "" ) {
-    alert ("Llena los campos antes de registrar");
+    Swal.fire({
+      title: 'Llena los campos antes de registrar',
+      type: 'error',
+      confirmButtonText: 'Ok',
+      confirmButtonColor: '#330b62'
+    })
+   // alert ("Llena los campos antes de registrar");
     
   } else {
     coWorkerList();
   };
 }
 
-
-
-const video = document.getElementById('video');
-const canvas = document.getElementById('canvas');
-const snap = document.getElementById("snap");
-const errorMsgElement = document.querySelector('span#errorMsg');
-
-const constraints = {
-
-  audio: false,
-  video: {
-    width: 200, height: 200
-  }
-};
-// Access webcam
-async function init() {
-  try {
-    const stream = await navigator.mediaDevices.getUserMedia(constraints);
-    handleSuccess(stream);
-  } catch (e) {
-      errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
-    }
-  }
-// Success
-function handleSuccess(stream) {
-    window.stream = stream;
-    video.srcObject = stream;
-  }
-// Load init
-init();
-
-
-
-let tableData = document.getElementById('table-data');
-
-//this function create cards with the info of visitors collection and show it to the admin.
-function guestList() {
-  db.collection("visitors").onSnapshot(querySnapshot => {
-    tableData.innerHTML = '';
-    querySnapshot.forEach(doc => {
-      let formatHour = new Date (doc.data().hour.seconds*1000);
-      tableData.innerHTML += `
-      <div class="card col-md-3">
-      <h5 class="card-header"></h5>
-      <div class="card-body">
-      <p class="card-text">${doc.data().name}</p>
-      <p class="card-text">${doc.data().visiting}</p>
-      <p class="card-text">${formatHour}</p>
-      <!-- <p class="card-text"> Aquí va la fotografía </p>
-      <img src= "aqui va el base 64"> -->
-      </div>
-      </div>   `;
-    });
-  });
-}
-
-let selectCoworker = document.getElementById('selectCoworker');
-
-//this function create fields on the select with the name of the coworker
-function dinamicSelector () {
-  db.collection("coworkers").onSnapshot(querySnapshot =>{
-    selectCoworker.innerHTML = '<option value="">A quien visitas</option>';
-    querySnapshot.forEach(doc => {
-      selectCoworker.innerHTML +=`
-      <option value="${doc.data().email}">${doc.data().name}</option>`;
-    });
-  });
-}
