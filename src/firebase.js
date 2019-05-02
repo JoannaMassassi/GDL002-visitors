@@ -1,7 +1,5 @@
 //this are my variables and EventListeners needed
 
-//this are my variables and EventListeners needed
-
 let visitorName = document.querySelector("#visitor");
 let visitingCo = document.querySelector("#selectCoworker");
 const btnRegister = document.querySelector("#register");
