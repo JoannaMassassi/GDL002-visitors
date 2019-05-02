@@ -62,8 +62,6 @@ let streaming = false,
  
 })();
 
-
-
 let tableData = document.getElementById('table-data');
 
 //this function create cards with the info of visitors collection and show it to the admin.
