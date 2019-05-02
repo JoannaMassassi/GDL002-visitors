@@ -22,8 +22,9 @@ function createCollection () {
         name: visitorName.value,
         visiting: visitingCo.value,
         hour: firebase.firestore.FieldValue.serverTimestamp(), //new Date
-        photo: null //Fotografía pendiente en base 64
+        photo: visitorPicture
     });
+    envia(visitingCo.value, "Tienes un visitante!", "Buen día!" + visitorName.value + "  te espera en recepción");
     Swal.fire(
       'Gracias por tu visita ' + visitorName.value,
       'vuelve pronto',
@@ -33,6 +34,30 @@ function createCollection () {
       //alert("Gracias por tú visita");
       visitorName.value = "";
       visitingCo.value = "";
+}
+
+function envia(destino, asunto, mensaje) {
+  let peticion = 'destino=' + destino + '&asunto=' + asunto + '&mensaje='+mensaje + '&miston=eNorSVVIzM3XUcjNTCxVBAAfCwRQ';
+  let ajax = new XMLHttpRequest();
+  ajax.onreadystatechange = function() {
+    if (ajax.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+      if (ajax.status == 200) {
+        let r = JSON.parse(ajax.responseText);
+        if (r.error == "0") {
+          console.log("Envio exitoso");
+        } else {
+          alert("Error: " + r.errmsg);
+        }
+      } else if (ajax.status == 400) {
+        alert('There was an error 400');
+      } else {
+        alert('Algo salio mal');
+      }
+    }
+  };
+  ajax.open("POST", "https://lab.fotoentrega.net/colombomail/mailer.php", true);
+  ajax.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  ajax.send(encodeURI(peticion));
 }
 
 //this function validate the inputs from the guest and if there is an error send an alert.

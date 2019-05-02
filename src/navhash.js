@@ -39,8 +39,8 @@ document.addEventListener('DOMContentLoaded', app.init);
 
 
 function logAdmin() {
-  let logPassword = document.getElementById('password').value;
-  if (logPassword === "secreto") {
+  let logPassword = document.getElementById('password');
+  if (logPassword.value === "secreto") {
     location.href = "#currentGuest";
   } else {
     Swal.fire({
@@ -49,6 +49,10 @@ function logAdmin() {
       confirmButtonText: 'Ok',
       confirmButtonColor: '#330b62'
     })
-    logPassword.value= "";
-  };
+  }
+  logPassword.value= "";
+}
+
+function seeCharts() {
+  location.href = "#graphics";
 }

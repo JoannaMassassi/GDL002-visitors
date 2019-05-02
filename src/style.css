@@ -7,6 +7,16 @@ h1 {
   background-color: #330b62!important;
 }
 
+.card-header{
+  text-align:center;
+  background: none!important;
+  
+}
+.formatVideo{
+  border-radius: 50%;
+  width: 300px;
+  height: 300px;
+}
 .bg-light {
   background-color: #330b62!important;
 }

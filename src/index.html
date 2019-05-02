@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Colombe</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {packages: ['corechart']});
+      //google.charts.setOnLoadCallback(drawChart);
+    </script>
     <link rel="stylesheet" href="style.css">
   </head>
   <body onload= "dinamicSelector()">
@@ -21,18 +26,18 @@
     <select name="selectCoworker" id="selectCoworker" class="visitantSelector">
     </select>
     <br>
-    <div class="video-wrap">
-      <video id="video" playsinline autoplay></video>
-    </div>
-    <!-- Trigger canvas web API -->
-    <div class="controller">
-      <button id="snap" class="btn btn-secondary registBtn">Captura la foto</button>
+    <div class="video-wrap" class= "formatVideo">
+      <video id="video" class= "formatVideo"></video>
+      <button id="startbutton" class="btn btn-secondary registBtn">Captura la foto</button>
+      <canvas id="canvas" class= "formatVideo"></canvas>
     </div>
     <br>
       <button id="register" class="btn btn-secondary registBtn">Registrate</button>
   </section>
   <section class= "page" id= "adminLogin">
     <div class= "fields">
+      <img width="50rem" src="../img/icon3.png">
+      <br>
       <input type="password" id="password" placeholder= "Ingresa el código">
       <br>
       <div class= "btn btn-outline-success my-2 my-sm-0" onclick= "logAdmin()" data-target= "currentGuest">Ingresar</div>
@@ -41,11 +46,21 @@
   <!--Aquí la pantalla de visitas activas -->
   <section class= "page" id= "currentGuest">
     <div class= "fields">
+      <h2>Registro de CoWorkers</h2>
       <input type= "text" id= "coWorker" placeholder= "Ingresa nuevo coWorker">
       <input type= "text" id= "mailTo" placeholder= "Correo Electronico">
       <button class= "btn btn-outline-success my-2 my-sm-0 btnSave" id="save">Registrar</button>
+      <button class= "btn btn-outline-success my-2 my-sm-0 btnSave" id="save" onclick= "seeCharts()">Ver gráficas</button>
     </div>
-    <div id= "table-data" class= "row">
+      <h2>Visitantes</h2>
+      <div id= "table-data" class= "row">
+    </div>
+  </section>
+  <section class= "page" id= "graphics">
+    <h2>Gráficas comparativas</h2>
+    <div id="charts">
+    </div>
+    <div id="charts2">
     </div>
   </section>
 
