@@ -1,3 +1,4 @@
+const db = firebase.firestore();
 //this are my variables and EventListeners needed
 
 let visitorName = document.querySelector("#visitor");
